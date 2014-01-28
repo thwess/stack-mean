@@ -29,8 +29,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.post('/addUser', user.addUsuario);
+app.post('/updateUser', user.updateUsuario);
+app.post('/removeUser', user.removeUsuario);
+app.get('/findAll', user.findAll);
+app.get('/find/:email', user.findByEmail);
+
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+  console.log('Server iniciado na porta ' + app.get('port'));
 });
