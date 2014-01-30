@@ -29,12 +29,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.post('/addUser', user.addUsuario);
-app.post('/updateUser', user.updateUsuario);
-app.post('/removeUser', user.removeUsuario);
-app.get('/findAll', user.findAll);
-app.get('/find/:email', user.findByEmail);
-
+app.post('/add/user', user.addUsuario);
+app.get('/find/user', user.findAll);
+app.get('/find/user/:email', user.findByEmail);
+//app.delete('/remove/user', user.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Server iniciado na porta ' + app.get('port'));

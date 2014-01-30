@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
 
+  <section ng-controller="CadastroController">
+      <form ng-submit="adicionarUsuario();">
+        <input type="text" ng-model="usuario.ds_email" />
+        <input type="text" ng-model="usuario.ds_senha" />
+        <input type="text" ng-model="usuario.nm_usuario" />
+        <input type="text" ng-model="usuario.endereco.ds_pais" />
+        <input type="text" ng-model="usuario.endereco.ds_estado" />
+        <input type="text" ng-model="usuario.endereco.ds_cidade" />
+        <input type="text" ng-model="usuario.endereco.ds_bairro" />
+        <input type="text" ng-model="usuario.endereco.nr_cep" />
+        <input type="submit" value="Adicionar"/>
+      </form>
+
+      <table>
+        <thead>
+          <th>Email</th>
+          <th>Senha</th>
+          <th>Nome</th>
+          <th>Pais</th>
+          <th>Estado</th>
+          <th>Cidade</th>
+          <th>Bairro</th>
+          <th>CEP</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="u in usuarios">
+            <td>u.ds_email</td>
+            <td>u.ds_senha</td>
+            <td>u.nm_usuario</td>
+            <td>u.ds_endereco.ds_pais</td>
+            <td>u.ds_endereco.ds_estado</td>
+            <td>u.ds_endereco.ds_cidade</td>
+            <td>u.ds_endereco.ds_bairro</td>
+            <td>u.ds_endereco.nr_cep</td>
+          </tr>
+        </tbody>
+      </table>
+
+  </section>
 
   <script type="text/javascript" src="/javascripts/angular.min.js"></script>
+
   <script type="text/javascript" src="/javascripts/main.js"></script>
   <script type="text/javascript" src="/javascripts/controllers.js"></script>
   <script type="text/javascript" src="/javascripts/services.js"></script>
+  <script type="text/javascript" src="/javascripts/factorys.js"></script>
   </body>
 </html>

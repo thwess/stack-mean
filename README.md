@@ -1,1 +1,1 @@
-Aplicação teste utilizando a stach MEAN.
+Aplicação teste utilizando a stack MEAN.

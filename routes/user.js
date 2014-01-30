@@ -12,10 +12,6 @@ var Usuario = mongoose.model("usuario", new Schema({
 		ds_cidade : {type: String},
 		ds_bairro : {type: String},
 		nr_cep : {type: String}
-	},
-	acesso : {
-		st_usuario: {type: String, required: true},
-		tp_usuario: {type: String, required: true}
 	}
 }));
 
@@ -32,10 +28,6 @@ exports.addUsuario = function(req, res) {
 	});
 };
 
-exports.updateUsuario = function(req, res) {
-
-};
-
 exports.removeUsuario = function(req, res) {
 
 };
@@ -45,5 +37,10 @@ exports.findAll = function(req, res) {
 };
 
 exports.findByEmail = function(req, res) {
-
+	Usuario.find({}, function(error, data){
+		if(error){
+			res.send(500);
+		}
+		res.json({usuarios : data});
+	});
 };
