@@ -7,27 +7,36 @@
 				this.ds_email = "";
 				this.ds_senha = "";
 				this.nm_usuario = "";
-				this.ds_endereco = {
-					ds_pais : "",
-					ds_estado : "",
-					ds_cidade : "",
-					ds_bairro : "",
-					nr_cep : ""
-				}
 			}
 
 			$scope.usuarios = [];
 			$scope.usuario = new Usuario();
 
 			$scope.adicionarUsuario = function (){
-				var usuario = UsuarioDAO.save($scope.usuario);
-				$scope.usuarios.push(usuario);
-				$scope.usuario = new Usuario();
+				UsuarioDAO.save($scope.usuario).then(function(resultado) {
+					$scope.usuarios.push(resultado.usuario);
+					$scope.usuario = new Usuario();
+				});
 			};
 
-			UsuarioDAO.findAll().success(function(data){
-				$scope.usuarios = data.usuarios;	
-			});
-			
+			$scope.buscarUsuario = function(email) {
+				if(!email){
+					listarTodos();
+					return;
+				}
+				UsuarioDAO.findByEmail(email).then(function(resultado){
+					$scope.usuarios = [];
+					if(resultado.usuario){
+						$scope.usuarios.push(resultado.usuario);	
+					}
+				});
+			};
+			function listarTodos() {
+				UsuarioDAO.findAll().then(function(data){
+					$scope.usuarios = data.usuarios;	
+				});
+			};
 
+			listarTodos();
+						
 		}]);

@@ -31,7 +31,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.post('/add/user', user.addUsuario);
 app.get('/find/user', user.findAll);
-app.get('/find/user/:email', user.findByEmail);
+app.get('/find/user/:ds_email', user.findByEmail);
 //app.delete('/remove/user', user.delete);
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -1,2 +1,7 @@
 
-	angular.module("myApp", ["myApp.Controllers", "myApp.Services", "myApp.Factorys"]);
+	angular.module("myApp", [
+								"myApp.Controllers"
+								, "myApp.Services"
+								, "myApp.Factorys"
+								, "myApp.Filters"
+							]);

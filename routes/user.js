@@ -1,23 +1,13 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/apptestedb");
+mongoose.connect("mongodb://localhost/appyusuarioteste");
 var Schema = mongoose.Schema;
 
 var Usuario = mongoose.model("usuario", new Schema({
 	ds_email: {type: String, required: true},
 	ds_senha: {type: String, required: true},
-	nm_usuario: {type: String, required: true},
-	ds_endereco: {
-		ds_pais : {type: String},
-		ds_estado : {type: String},
-		ds_cidade : {type: String},
-		ds_bairro : {type: String},
-		nr_cep : {type: String}
-	}
+	nm_usuario: {type: String, required: true}
 }));
 
-/**
- * Salva um usuário no banco e retorna o mesmo.
- */
 exports.addUsuario = function(req, res) {
 	var usuario = new Usuario(req.body);
 	usuario.save(function(error, data) {
@@ -33,14 +23,24 @@ exports.removeUsuario = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
-
-};
-
-exports.findByEmail = function(req, res) {
-	Usuario.find({}, function(error, data){
+	Usuario.find({}, function(error, lista){
 		if(error){
 			res.send(500);
 		}
-		res.json({usuarios : data});
+		res.json({usuarios : lista});
+	});
+};
+
+exports.findByEmail = function(req, res) {
+	var email = req.params.ds_email;
+	if(!email){
+		console.log("deu merda");
+		res.send(500);
+	}
+	Usuario.findOne({ds_email : email}, function(error, data){
+		if(error){
+			res.send(500);
+		}
+		res.json({usuario : data});
 	});
 };

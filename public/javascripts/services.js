@@ -1,24 +1,30 @@
 
 	angular.module("myApp.Services", []).
 
-	service("UsuarioDAO", function($http){
+	service("UsuarioDAO", ["$http", function($http){
 
 		function save(usuario) {
-			$http.post("/add/user", usuario).success(function(data){
-				return data.usuario;
+			return $http.post("/add/user", usuario).then(function(retorno){
+				return retorno.data;
+			}, function(data){
+				return {};
 			});
 		};
 
 		function findAll() {
-			return $http.get("/find/user").success(function(data){
-				return data || {};
+			return $http.get("/find/user").then(function(retorno){
+				return retorno.data;
+			}, function(data) {
+				return {};
 			});
 		};
 
 
 		function findByEmail(email){
-			return $http.get("/find/user", email).success(function(data){
-				return data.usuarios || [];
+			return $http.get("/find/user/" + email).then(function(retorno){
+				return retorno.data;
+			}, function(retorno){
+				return {};
 			});
 		};
 
@@ -28,4 +34,4 @@
 			findByEmail : findByEmail
 		};
 
-	});
+	}]);
