@@ -1,7 +1,6 @@
-
 	angular.module("myApp", [
 								"myApp.Controllers"
 								, "myApp.Services"
-								, "myApp.Factorys"
+								, "myApp.Factories"
 								, "myApp.Filters"
 							]);
