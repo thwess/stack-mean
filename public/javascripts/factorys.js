@@ -1,4 +1,3 @@
-
-	angular.module("myApp.Factorys", []);
+	angular.module("myApp.Factories", []);
 
 		
