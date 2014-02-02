@@ -14,10 +14,19 @@
 
 			$scope.adicionarUsuario = function (){
 				UsuarioDAO.save($scope.usuario).then(function(resultado) {
-					$scope.usuarios.push(resultado.usuario);
 					$scope.usuario = new Usuario();
 				});
+				listarTodos();
 			};
+
+			$scope.alterar = function(usuario) {
+				$scope.usuario = usuario;
+			};
+
+			$scope.excluir = function(usuario) {
+				UsuarioDAO.excluir(usuario);
+				listarTodos();
+			};	
 
 			$scope.buscarUsuario = function(email) {
 				if(!email){

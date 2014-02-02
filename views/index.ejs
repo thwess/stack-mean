@@ -24,12 +24,16 @@
           <th>Email</th>
           <th>Senha</th>
           <th>Nome</th>
+          <th></th>
+          <th></th>
         </thead>
         <tbody>
           <tr ng-repeat="u in usuarios">
             <td>{{u.ds_email}}</td>
             <td>{{u.ds_senha | MaskSenha}}</td>
             <td>{{u.nm_usuario}}</td>
+            <td><a href ng-click="alterar(u);">Alterar</a></td>
+            <td><a href ng-click="excluir(u);">Excluir</a></td>
           </tr>
         </tbody>
       </table>

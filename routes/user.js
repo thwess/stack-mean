@@ -19,7 +19,14 @@ exports.addUsuario = function(req, res) {
 };
 
 exports.removeUsuario = function(req, res) {
-
+	var usuario = new Usuario(req.body);
+	usuario.remove(function(error){
+		if(error){
+			res.send(500);
+		}else{
+			res.send(200);
+		}
+	});
 };
 
 exports.findAll = function(req, res) {

@@ -28,10 +28,15 @@
 			});
 		};
 
+		function excluir(usuario) {
+			return $http.post("/remove/user", usuario);
+		};
+
 		return {
 			save : save,
 			findAll : findAll,
-			findByEmail : findByEmail
+			findByEmail : findByEmail,
+			excluir : excluir
 		};
 
 	}]);
